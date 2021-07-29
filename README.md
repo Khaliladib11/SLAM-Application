@@ -69,6 +69,31 @@ rosrun map_server map_saver -f mymap
 this line will save 2 file in the map folder. one is .yaml and one .pgm.
 
 # Autonomous navigation
+I used navigation stack to perform autonomous navigation. first you need to make sure that move base and acml nodes are installed(usually they will automatically installed with ros).
+after saving the map, now we need to run the lidar node, the rosserial node, the robot configuration node and the move base node.
+and make sure that in the move base file the name of the name is the same as the name of the map you created.
+```
+<node name="map_server" pkg="map_server" type="map_server" args="$(find clawbot_pkg)/map/mymap.yaml"/>
+```
 
+```
+rosrun delta_2b_lidar delta_2b_lidar_node
+rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB1 _baud:=115200
+roslaunch clawbot_pck my_robot_configuration
+roslaunch clawbot_pkg movebase
+```
+Open Rviz and give a goal to the robot from the tools in RVIZ.
 
-
+# Use the Camera Module
+in the raspbeery pi run:
+```
+roslaunch raspicam_node camerav2_1280x960_10fps.launch enable_raw:=true 
+```
+in the computer run:
+```
+rosrun raspicam_node imv_view.py
+```
+or 
+```
+rosrun rqt_image_view rqt_image_view
+```
