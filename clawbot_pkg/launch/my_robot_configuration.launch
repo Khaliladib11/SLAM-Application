@@ -1,0 +1,16 @@
+<launch>
+
+	<param name="my_robot_description" textfile="$(find clawbot_pkg)/urdf/clawbot.urdf"/>
+	
+
+	<!-- start the tf publisher -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
+      <remap from="robot_description" to="my_robot_description" />
+      <remap from="joint_states" to="different_joint_states" />
+    </node>
+
+  <!-- Odometry -->
+  <node pkg="clawbot_pkg" type="odom_node.py" name="odom_node" output="screen">
+  </node>
+
+</launch> 
