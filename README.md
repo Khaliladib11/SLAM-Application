@@ -5,6 +5,16 @@ ROS FOXY is the ros version i used, also ubuntu 20.04 is my OS.
 to download and intsall ROS Noetic, follow the instructions from the link down below:
 http://wiki.ros.org/noetic/Installation/Ubuntu
 
+There are some open source package you need to install to work with this project:
+https://github.com/tu-darmstadt-ros-pkg/hector_slam
+https://github.com/ros-drivers/rosserial
+https://github.com/UbiquityRobotics/raspicam_node
+
+Also here some useful links:
+https://www.youtube.com/watch?v=Qrtz0a7HaQ4
+https://www.youtube.com/watch?v=We6CQHhhOFo
+https://yoraish.com/2020/01/23/a-full-autonomous-stack-a-tutorial-ros-raspberry-pi-arduino-slam/
+
 ![complate schematic](https://user-images.githubusercontent.com/73353537/127464745-c2d5dd35-4323-46a6-b5e9-a2720bf9abdd.JPG)
 
 # Project Setup
@@ -26,6 +36,8 @@ Also don't forget to source your environments:
 source devel/setup.bash
 ```
 # Testing the LIDAR
+![Lidar](https://user-images.githubusercontent.com/73353537/127492066-15d3c742-9cce-42c7-a99e-605be6fd33e1.jpeg)
+
 Connect the LIDAR to the raspberry pi and run the following command (on the raspberry pi):
 ```
 rosrun delta_2b_lidar delta_2b_lidar_node
@@ -38,6 +50,7 @@ sudo chmod 777 /dev/ttyUSB0
 note that in your computer maybe you use another port (different from ttyUSB0)
 
 if everything is ok you can move to the next step.
+![Lidar Scan](https://user-images.githubusercontent.com/73353537/127491731-4be1b2ca-2c07-4ab8-becc-30377f3696cd.JPG)
 
 
 # Connect arduino with Raspberry pi
@@ -60,6 +73,7 @@ roslaunch clawbot_pkg clawbot_driver.launch
  
 ```
 start moving the robot and the map will updated on rviz.
+![hector_map](https://user-images.githubusercontent.com/73353537/127491688-19856dd9-bab5-427d-a60a-5b8adbe0d43a.JPG)
 
 # Save the map
 cd to the map folder inside clawbot_package, and run the following:
@@ -84,6 +98,8 @@ roslaunch clawbot_pkg movebase
 ```
 Open Rviz and give a goal to the robot from the tools in RVIZ.
 
+![goal rviz](https://user-images.githubusercontent.com/73353537/127491778-49f9beb5-e1b1-46e1-a767-da2efdbf8695.JPG)
+
 # Use the Camera Module
 in the raspbeery pi run:
 ```
@@ -97,3 +113,8 @@ or
 ```
 rosrun rqt_image_view rqt_image_view
 ```
+![ROS Camera](https://user-images.githubusercontent.com/73353537/127491829-ce14eb85-d3cb-4da8-8467-a058766d33d4.JPG)
+
+
+
+<img width="707" alt="me with robot" src="https://user-images.githubusercontent.com/73353537/127491859-eb764bec-14b6-49f3-8750-643457a486af.png">
